@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  :root {
+    /* Calm gray-green enterprise palette */
+    --background: 140 20% 97%;
+    --foreground: 160 15% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 160 15% 18%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 160 15% 20%;
+
+    --primary: 158 30% 28%; /* Dark green, aligned with sidebar tone */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 140 15% 94%;
+    --secondary-foreground: 160 15% 22%;
+
+    --muted: 140 12% 92%;
+    --muted-foreground: 160 10% 38%;
+
+    --accent: 156 25% 30%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 40% 40%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 85% 50%;
+    --warning-foreground: 26 30% 20%;
+
+    --border: 140 10% 86%;
+    --input: 140 10% 86%;
+    --ring: 158 30% 28%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 47% 20%;
+    --sidebar-primary: 199 89% 48%;
+    --sidebar-primary-foreground: 255 255% 100%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 222 47% 20%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 199 89% 48%;
+
+    /* Custom gradients matching Dashboard */
+    --gradient-primary: linear-gradient(135deg, hsl(199 89% 48%), hsl(217 91% 60%));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 40% 98%));
+    --gradient-dashboard: linear-gradient(135deg, hsl(210 40% 98%) 0%, hsl(0 0% 100%) 50%, hsl(199 89% 48% / 0.15) 100%); /* Dashboard gradient */
+    --gradient-glow: radial-gradient(ellipse at center, hsl(199 89% 48% / 0.15), transparent 70%);
+
+    /* Light shadows */
+    --shadow-card: 0 12px 30px -18px rgb(15 23 18 / 0.45);
+    --shadow-glow: 0 0 40px hsl(158 30% 28% / 0.08);
+  }
+
+  .dark {
+    /* Optional: Dark mode variables if you want dark mode support */
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 98%;
+    /* ... other dark mode variables ... */
+  }
+}
+.card-title {
+  color: hsl(var(--card-foreground)) !important;
+}
+
+.card-description {
+  color: hsl(var(--muted-foreground)) !important;
+}
+
+.label {
+  color: hsl(var(--foreground)) !important;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply text-foreground font-sans antialiased bg-background;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  code, .mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .glass {
+    @apply backdrop-blur-xl bg-white/80 border border-white/20;
+  }
+
+  .glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .card-gradient {
+    background: var(--gradient-card);
+  }
+
+  .dashboard-bg {
+    background: linear-gradient(135deg, hsl(210 40% 98%) 0%, hsl(0 0% 100%) 50%, hsl(199 89% 48% / 0.15) 100%);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(210 40% 96%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(214 32% 91%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(215 25% 50%);
+}
+
+/* Animation keyframes */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out;
+}
